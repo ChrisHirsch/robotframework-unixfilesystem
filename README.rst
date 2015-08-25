@@ -32,7 +32,8 @@ These keyword actions are available::
         Does an lstat on the Path and returns the owner of the file/directory:
     
         Arguments:
-            - path:      the path to the file/directory you wish to get ownership on (e.g. /tmp/test.txt or ../foo)
+            - path:      the path to the file/directory you wish to get ownership 
+                         on (e.g. /tmp/test.txt or ../foo)
         Return:
             - owner:     returns the owner of the file (e.g. root or chris)
 
@@ -41,8 +42,10 @@ These keyword actions are available::
         Returns True if a match is found or False otherwise.
         
         Arguments:
-            - owner:     the username to check against ownership of the path (e.g. root or chris)
-            - path:      the path to the file/directory you wish to get ownership on (e.g. /tmp/test.txt or ../foo)
+            - owner:     the username to check against ownership of the path 
+                         (e.g. root or chris)
+            - path:      the path to the file/directory you wish to get ownership 
+                         on (e.g. /tmp/test.txt or ../foo)
         Return:
             - returns True if the owner of the Path matches Owner, False otherwise
 
@@ -51,7 +54,8 @@ These keyword actions are available::
         an octal value.
 
         Arguments:
-            - path:      the path to the file/directory you wish to get ownership on (e.g. /tmp/test.txt or ../foo)
+            - path:      the path to the file/directory you wish to get ownership on 
+                         (e.g. /tmp/test.txt or ../foo)
         Return:
             - permissions: Returns the octal permissions of the path (e.g. 0755 or 0644)
 
@@ -61,7 +65,8 @@ These keyword actions are available::
         Returns True if a match is found or False otherwise.
 
         Arguments:
-            - path:      the path to the file/directory you wish to get ownership on (e.g. /tmp/test.txt or ../foo)
+            - path:      the path to the file/directory you wish to get ownership on 
+                         (e.g. /tmp/test.txt or ../foo)
             - permissions: octal permissions (e.g. 0755 or 0644)
         Return:
             - returns True if the owner of the Path matches Permissions, False otherwise
