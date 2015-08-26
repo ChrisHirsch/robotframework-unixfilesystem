@@ -1,5 +1,6 @@
 import os
 import pwd
+from robot.api import logger
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 execfile(os.path.join(THIS_DIR, 'version.py'))
@@ -24,7 +25,7 @@ class UnixFilesystemLibrary(object):
         """
         Return the owner (name) of the path
         """
-        return str(pwd.getpwuid(self.get_uid_from_path(path)))
+        return str(pwd.getpwuid(self.get_uid_from_path(path)).pw_name)
 
     def owner_from_path_should_match(self, owner, path):
         """
