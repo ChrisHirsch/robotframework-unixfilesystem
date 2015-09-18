@@ -13,9 +13,9 @@ class UnixFilesystemLibrary(object):
     ROBOT_LIBRARY_VERSION = VERSION
     ROBOT_LIBRARY_SCOPE = 'GLOBAL'
 
-    def get_uid_from_path(self, path):
+    def get_path(self, path):
         """
-        Return the UNIX User ID of the path
+        Gets the path if possible even if a wildcard is supplied
         """
         if not os.path.exists(path):
             try:
@@ -29,7 +29,15 @@ class UnixFilesystemLibrary(object):
             except:
                 raise Exception('Could not open file ' + path)
             # Assign
-        return os.stat(path).st_uid
+        return path
+
+
+
+    def get_uid_from_path(self, path):
+        """
+        Return the UNIX User ID of the path
+        """
+        return os.stat(self.get_path(path)).st_uid
 
     def get_owner_from_path(self, path):
         """
@@ -51,7 +59,7 @@ class UnixFilesystemLibrary(object):
         """
         # Use lstat instead of stat so that we get info about the symlink itself
         # and not what the symlink points to
-        info = os.lstat(path)
+        info = os.lstat(self.get_path(path))
         myoct = oct(info.st_mode & 0777)
         return str(myoct)
 
@@ -68,6 +76,6 @@ class UnixFilesystemLibrary(object):
         Returns True if the the octal values of the path mactches the mode.
         ie '0755'
         """
-        info = os.lstat(path)
+        info = os.lstat(self.get_path(path))
         myoct = oct(info.st_mode & 0777)
         return str(myoct) == str(mode)
