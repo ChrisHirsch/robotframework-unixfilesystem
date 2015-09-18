@@ -18,7 +18,17 @@ class UnixFilesystemLibrary(object):
         Return the UNIX User ID of the path
         """
         if not os.path.exists(path):
-            raise Exception('Could not open file ' + path)
+            try:
+                # Didn't find the path so try wildcard expansion next
+                import glob
+                globpath = glob.glob(path)
+                globpath = globpath.pop()
+                if not os.path.exists(globpath):
+                   raise Exception('Could not open file ' + globpath)
+                path = globpath
+            except:
+                raise Exception('Could not open file ' + path)
+            # Assign
         return os.stat(path).st_uid
 
     def get_owner_from_path(self, path):
