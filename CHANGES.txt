@@ -2,6 +2,10 @@
 Changes for robotframework-unixfilesystem
 ======================================
 
+2015/09/18 0.0.2
+================
+ - added glob support
+
 2015/08/25 0.0.1
 ================
 
