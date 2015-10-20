@@ -2,6 +2,10 @@
 Changes for robotframework-unixfilesystem
 ======================================
 
+2015/09/18 0.1.0
+================
+ - Fixed a MAJOR bug for Perms/Owner From Path Should Match so tests correctly work
+
 2015/09/18 0.0.3
 ================
  - Refactored glob support so it works across all methods

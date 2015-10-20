@@ -107,6 +107,11 @@ Here is an example of how to check that permissions from the path match the octa
 Permissions From Path Should Match 0644
 ================================== ==========================       
 
+Updating Pip Repo
++++++++
+
+    python setup.py sdist
+    twine upload dist/*
 
 
 License
