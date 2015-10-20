@@ -1,6 +1,7 @@
 import os
 import pwd
 from robot.api import logger
+from robot.utils import asserts
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 execfile(os.path.join(THIS_DIR, 'version.py'))
@@ -50,8 +51,8 @@ class UnixFilesystemLibrary(object):
         Return True if the owner matches user name of the path
         """
         path_owner = self.get_owner_from_path(path)
+        asserts.fail_unless_equal(owner, path_owner, 'Owner From Path %s Should Match %s, but instead is %s' % (path, owner, path_owner))
 
-        return owner == path_owner
 
     def get_permissions_from_path_as_octal(self, path):
         """
@@ -78,4 +79,4 @@ class UnixFilesystemLibrary(object):
         """
         info = os.lstat(self.get_path(path))
         myoct = oct(info.st_mode & 0777)
-        return str(myoct) == str(mode)
+        asserts.fail_unless_equal(str(myoct), str(mode), 'Permissions from Path %s Should Match %s but instead are %s' % (path, mode, myoct))
