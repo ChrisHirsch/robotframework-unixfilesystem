@@ -1,5 +1,6 @@
 import os
 import pwd
+import grp
 from robot.api import logger
 from robot.utils import asserts
 
@@ -52,6 +53,27 @@ class UnixFilesystemLibrary(object):
         """
         path_owner = self.get_owner_from_path(path)
         asserts.fail_unless_equal(owner, path_owner, 'Owner From Path %s Should Match %s, but instead is %s' % (path, owner, path_owner))
+
+
+
+    def get_gid_from_path(self, path):
+        """
+        Return the UNIX Group ID of the path
+        """
+        return os.stat(self.get_path(path)).st_gid
+
+    def get_group_from_path(self, path):
+        """
+        Return the group (name) of the path
+        """
+        return str(grp.getgrgid(self.get_gid_from_path(path)).gr_name)
+
+    def group_from_path_should_match(self, group, path):
+        """
+        Return True if the group matches user name of the path
+        """
+        path_group = self.get_group_from_path(path)
+        asserts.fail_unless_equal(group, path_group, 'Group From Path %s Should Match %s, but instead is %s' % (path, group, path_group))
 
 
     def get_permissions_from_path_as_octal(self, path):
