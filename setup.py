@@ -1,17 +1,15 @@
 #!/usr/bin/env python
-
+from distutils.core import setup
 from os.path import join, dirname
 
-execfile(join(dirname(__file__), 'src', 'UnixFilesystemLibrary', 'version.py'))
-
-from distutils.core import setup
+exec(open("./src/UnixFilesystemLibrary/version.py").read())
 
 CLASSIFIERS = """
 Programming Language :: Python
 Topic :: Software Development :: Testing
 """[1:-1]
 
-long_description=open(join(dirname(__file__), 'README.rst',)).read()
+long_description = open(join(dirname(__file__), 'README.rst', )).read()
 
 setup(
   name             = 'robotframework-unixfilesystemlibrary',
